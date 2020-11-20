@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 const { registerCommands, registerEvents, registerHooks } = require('./utils/registry');
 const { setState } = require('./utils/state');
 
