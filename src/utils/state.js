@@ -8,6 +8,8 @@ async function setState(dc) {
     privateId: '755580046541848646',
     privateChatId: '757316444102066197'
   });
+
+  dc.state.set('jason', '681600426973593611');
 }
 
 module.exports = {
