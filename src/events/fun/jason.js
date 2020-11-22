@@ -4,6 +4,7 @@ const fsp = require('fs').promises;
 const path = require('path');
 
 async function run(dc, oldState, newState) {
+  if (!dc.state.get('jasonstat')) return;
   if (newState.id != dc.state.get('jason')) return;
   const conn = await newState.channel.join();
   let dir = path.join(__dirname, '..', '..', 'static', 'jason');

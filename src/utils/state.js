@@ -8,7 +8,7 @@ async function setState(dc) {
     privateId: '755580046541848646',
     privateChatId: '757316444102066197'
   });
-
+  dc.state.set('jasonstat', true);
   dc.state.set('jason', '154041834786652161');
 }
 
