@@ -1,23 +1,31 @@
 {
   "name": "gulagbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "The main bot for the GULAG Discord server",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/bot.js",
     "test": "nodemon ./src/bot.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtyocum/gulagbot.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "discord.js": "^12.4.1",
-    "ffmpeg-static": "^4.2.7",
-    "ytdl-core-discord": "^1.2.4"
+  "bugs": {
+    "url": "https://github.com/rtyocum/gulagbot/issues"
   },
+  "homepage": "https://github.com/rtyocum/gulagbot#readme",
   "devDependencies": {
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.5.0",
+    "ffmpeg-static": "^4.2.7",
+    "ytdl-core-discord": "^1.2.4"
   }
 }
