@@ -11,7 +11,6 @@ async function run(dc, message) {
   else {
     message.reply('That command does not exist');
   }
-
 }
 
 
