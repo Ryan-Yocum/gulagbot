@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 let aliases = ['p']
 
 async function run(dc, message, args) {
@@ -10,7 +11,9 @@ async function run(dc, message, args) {
   }
   if (args.join(' ') == 'open') {
     dc.state.get('portal').state = true;
-    message.reply('The Portal has been opened');
+    const msg = new Discord.MessageEmbed()
+      .addField('New Message Embed', 'This is a test');
+    message.reply(msg);
     let mems = portal.members;
     mems.forEach(e => {
       e.voice.setChannel(private);
