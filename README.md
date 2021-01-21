@@ -6,5 +6,6 @@ This is the code for the GULAG Bot. Please let me know if you would like to help
 
 ## Running
 Run `npm install` to install dependencies
-There are 2 scripts, `npm start` and `npm test`.
+You must compile the code with the typescript compiler
+Then you can use `npm test` or `npm start`
 Start uses node and test uses nodemon to scan for changes.
