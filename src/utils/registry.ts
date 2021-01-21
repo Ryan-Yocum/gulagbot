@@ -1,9 +1,11 @@
+import { DiscordClient } from "../classes/Client";
+
 const fsp = require('fs').promises;
 const path = require('path');
 
-async function registerCommands(dc, dir = '../commands') {
+export async function registerCommands(dc: DiscordClient, dir: string = '../commands') {
   let files = await fsp.readdir(path.join(__dirname, dir));
-  files.forEach(async file => {
+  files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
       registerCommands(dc, path.join(dir, file));
@@ -14,7 +16,7 @@ async function registerCommands(dc, dir = '../commands') {
         let commandModule = require(path.join(__dirname, dir, file));
         dc.commands.set(commandName, commandModule);
         if (typeof commandModule.aliases !== 'undefined') {
-          commandModule.aliases.forEach(async alias => {
+          commandModule.aliases.forEach(async (alias: string) => {
             dc.commands.set(alias, commandModule);
           });
         }
@@ -23,9 +25,9 @@ async function registerCommands(dc, dir = '../commands') {
   });
 }
 
-async function registerEvents(dc, dir = '../events') {
+export async function registerEvents(dc: DiscordClient, dir: string = '../events') {
   let files = await fsp.readdir(path.join(__dirname, dir));
-  files.forEach(async file => {
+  files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
       registerEvents(dc, path.join(dir, file));
@@ -40,9 +42,9 @@ async function registerEvents(dc, dir = '../events') {
   });
 }
 
-async function registerHooks(dc, dir = '../webhooks') {
+export async function registerHooks(dc: DiscordClient, dir: string = '../webhooks') {
   let files = await fsp.readdir(path.join(__dirname, dir));
-  files.forEach(async file => {
+  files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
       registerHooks(dc, path.join(dir, file));
@@ -55,10 +57,4 @@ async function registerHooks(dc, dir = '../webhooks') {
       }
     }
   });
-}
-
-module.exports = {
-  registerCommands,
-  registerEvents,
-  registerHooks
 }
