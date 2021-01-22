@@ -4,8 +4,8 @@
   "description": "The main bot for the GULAG Discord server",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/bot.js",
-    "test": "nodemon ./src/bot.js"
+    "start": "node ./build/bot.js",
+    "test": "nodemon ./build/bot.js"
   },
   "repository": {
     "type": "git",

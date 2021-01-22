@@ -10,14 +10,12 @@ async function run(dc: DiscordClient, message: Message) {
   let command = args.shift();
   if (!command) return;
   if (dc.commands.has(command)) {
-    dc.commands.get(command)?.run();
+    dc.commands.get(command)?.run(dc, message, args);
   }
   else {
     message.reply('That command does not exist');
   }
 }
-
-
 
 module.exports = {
   event,

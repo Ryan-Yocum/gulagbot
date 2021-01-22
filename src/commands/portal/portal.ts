@@ -26,6 +26,9 @@ async function run(dc: DiscordClient, message: Message, args: string[]) {
     dc.state.get('portal').state = false;
     message.reply('The Portal has been closed');
   }
+  else {
+    message.reply('You must specify open or close');
+  }
 }
 
 module.exports = {
