@@ -1,14 +1,14 @@
-import { DiscordClient } from "../classes/Client";
+import { dc } from "../bot";
 
 const fsp = require('fs').promises;
 const path = require('path');
 
-export async function registerCommands(dc: DiscordClient, dir: string = '../commands') {
+export async function registerCommands(dir: string = '../commands') {
   let files = await fsp.readdir(path.join(__dirname, dir));
   files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
-      registerCommands(dc, path.join(dir, file));
+      registerCommands(path.join(dir, file));
     }
     else {
       if (file.endsWith('.js')) {
@@ -25,29 +25,29 @@ export async function registerCommands(dc: DiscordClient, dir: string = '../comm
   });
 }
 
-export async function registerEvents(dc: DiscordClient, dir: string = '../events') {
+export async function registerEvents(dir: string = '../events') {
   let files = await fsp.readdir(path.join(__dirname, dir));
   files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
-      registerEvents(dc, path.join(dir, file));
+      registerEvents(path.join(dir, file));
     }
     else {
       if (file.endsWith('.js')) {
         let eventModule = require(path.join(__dirname, dir, file));
         let eventName = eventModule.event;
-        dc.on(eventName, eventModule.run.bind(null, dc));
+        dc.on(eventName, eventModule.run);
       }
     }
   });
 }
 
-export async function registerHooks(dc: DiscordClient, dir: string = '../webhooks') {
+export async function registerHooks(dir: string = '../webhooks') {
   let files = await fsp.readdir(path.join(__dirname, dir));
   files.forEach(async (file: string) => {
     let stat = await fsp.lstat(path.join(__dirname, dir, file));
     if (stat.isDirectory()) {
-      registerHooks(dc, path.join(dir, file));
+      registerHooks(path.join(dir, file));
     }
     else {
       if (file.endsWith('.js')) {

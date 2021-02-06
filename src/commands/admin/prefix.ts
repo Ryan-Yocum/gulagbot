@@ -1,10 +1,11 @@
 import { Message } from "discord.js";
-import { DiscordClient } from "../../classes/Client";
+import { dc } from "../../bot";
+import { checkAdmin } from "../../utils/checkPerms";
 
-async function run(dc: DiscordClient, message: Message, args: string[]) {
+async function run(message: Message, args: string[]) {
   let prefix = args.join(' ');
   if (!message.member) return;
-  if (!message.member.hasPermission(32)) {
+  if (!checkAdmin(message.member)) {
     message.reply('You do not have sufficient permissions');
     return;
   }

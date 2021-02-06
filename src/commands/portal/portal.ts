@@ -1,16 +1,15 @@
-import { Message, TextChannel, VoiceChannel } from "discord.js";
-import { DiscordClient } from "../../classes/Client";
+import { Message, VoiceChannel } from "discord.js";
+import { dc } from "../../bot";
+import { checkDungon } from "../../utils/checkPerms";
 
 let aliases = ['p']
 
-async function run(dc: DiscordClient, message: Message, args: string[]) {
+async function run(message: Message, args: string[]) {
   const portal = dc.channels.cache.get(dc.state.get('portal').portalId) as VoiceChannel;
   const privateChan = dc.channels.cache.get(dc.state.get('portal').privateId) as VoiceChannel;
-  const privateChat = dc.channels.cache.get(dc.state.get('portal').privateChatId) as TextChannel;
-  if (!privateChat) return;
   if (!message.member) return;
   if (!portal) return;
-  if (!message.member.permissionsIn(privateChat).has(1024)) {
+  if (!checkDungon(message.member)) {
     message.reply('You do not have permission to use that command.');
     return;
   }

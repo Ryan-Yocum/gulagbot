@@ -1,8 +1,8 @@
-import { DiscordClient } from "../classes/Client";
+import { dc } from "../bot";
 
 const event = 'ready';
 
-async function run(dc: DiscordClient) {
+async function run() {
   if (!dc.user) return;
   dc.user.setActivity('Commands', { type: 'LISTENING' });
 }
