@@ -33,7 +33,7 @@ export class SoundBoard {
     let chan = dc.channels.cache.get('807378069324038206') as TextChannel;
     let msg = await chan.send(embed);
     this.msgID = msg.id;
-    sounds.forEach((sound: Sound) => {
+    sounds.forEach(async (sound: Sound) => {
       msg.react(sound.value);
     });
     msg.react('❌');
