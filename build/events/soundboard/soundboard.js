@@ -14,6 +14,8 @@ async function run(messageReaction, user) {
         return;
     messageReaction.users.remove(user);
     if (messageReaction.emoji.name === '❌') {
+        if (!bot_1.sb.conn)
+            return;
         bot_1.sb.leave();
         return;
     }
