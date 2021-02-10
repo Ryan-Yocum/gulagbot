@@ -28,13 +28,14 @@ class SoundBoard {
             .setColor('#FF3131')
             .addFields(fields)
             .setThumbnail('https://cdn.dribbble.com/users/1614722/screenshots/4419914/soundboard_animatie__zwart__still_2x.gif')
-            .setFooter('Click a reaction button to play a clip');
+            .setFooter('Click a reaction button to play a clip or ❌ to leave');
         let chan = bot_1.dc.channels.cache.get('807378069324038206');
         let msg = await chan.send(embed);
         this.msgID = msg.id;
         sounds.forEach((sound) => {
             msg.react(sound.value);
         });
+        msg.react('❌');
     }
     async join(member) {
         const chanId = member.voice.channelID;

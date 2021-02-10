@@ -9,6 +9,10 @@ async function run(messageReaction: MessageReaction, user: User) {
   if (messageReaction.message.id !== sb.msgID) return;
   if (user.bot) return;
   messageReaction.users.remove(user);
+  if (messageReaction.emoji.name === '❌') {
+    sb.leave();
+    return;
+  }
   let sound = sounds.find(s => {
     return s.value === messageReaction.emoji.name;
   });
