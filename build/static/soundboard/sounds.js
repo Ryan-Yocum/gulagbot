@@ -20,6 +20,11 @@ exports.default = [
         name: "Wet Fart",
         value: "💩",
         file: "wetfart.opus"
+    },
+    {
+        name: "Boom",
+        value: "💥",
+        file: "boom.opus"
     }
 ];
 //# sourceMappingURL=sounds.js.map
