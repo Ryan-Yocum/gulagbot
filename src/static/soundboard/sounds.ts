@@ -1,8 +1,8 @@
 export default [
   {
-    name: "Jason Druelo",
+    name: "Jason Derulo",
     value: "1️⃣",
-    file: "jasondruelo.opus"
+    file: "jasonderulo.opus"
   },
   {
     name: "Sicko Mode",
