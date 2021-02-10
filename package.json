@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./build/bot.js",
+    "build": "tsc && mkdir \"./build/webhooks\" && cp -r \"./src/static/soundboard/clips\" \"./build/static/soundboard\"",
     "test": "nodemon ./build/bot.js"
   },
   "repository": {

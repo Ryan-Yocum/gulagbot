@@ -11,7 +11,12 @@ export default [
   },
   {
     name: "Coconut Mall",
-    value: "3️⃣",
+    value: "🥥",
     file: "coconutmall.opus"
+  },
+  {
+    name: "Wet Fart",
+    value: "💩",
+    file: "wetfart.opus"
   }
 ]

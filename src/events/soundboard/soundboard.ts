@@ -14,6 +14,7 @@ async function run(messageReaction: MessageReaction, user: User) {
   });
   let guild = dc.guilds.cache.get(dc.state.get('guildId')) as Guild;
   let member = guild.members.cache.get(user.id) as GuildMember;
+  if (!member.voice.channelID) return;
   let fileName = sound?.file as string;
   let file = path.join(__dirname, '../../static/soundboard/clips', fileName);
   sb.play(member, file);
