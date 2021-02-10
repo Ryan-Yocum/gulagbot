@@ -1,9 +1,12 @@
-import { GuildMember, MessageEmbed, TextChannel, VoiceChannel, VoiceConnection } from "discord.js";
+import { GuildMember, MessageEmbed, StreamDispatcher, TextChannel, VoiceChannel, VoiceConnection } from "discord.js";
+import { createReadStream } from "fs";
 import { dc } from "../bot";
+import { Field, Sound } from "../interfaces/Sound";
 import { checkAdmin } from "../utils/checkPerms";
 
 export class SoundBoard {
   public conn: VoiceConnection | undefined;
+  public disp: StreamDispatcher | undefined;
   public msgID: string | undefined;
   async setup(member: GuildMember) {
     dc.emojis.cache.forEach(e => {
@@ -12,28 +15,27 @@ export class SoundBoard {
       }
     })
     if (!checkAdmin(member)) return;
+    const sounds = require('../static/soundboard/sounds').default;
+    let fields: Field[] = [];
+    sounds.forEach((sound: Sound) => {
+      fields.push({
+        name: sound.name,
+        value: sound.value,
+        inline: true
+      })
+    });
     const embed = new MessageEmbed()
       .setTitle('SoundBoard List')
       .setColor('#FF3131')
-      .addFields(
-        { name: 'Sound 1', value: '1️⃣', inline: true },
-        { name: 'Sound 2', value: '2️⃣', inline: true },
-        { name: 'Sound 3', value: '3️⃣', inline: true },
-        { name: 'Sound 4', value: '4️⃣', inline: true },
-        { name: 'Sound 5', value: '5️⃣', inline: true },
-        { name: 'Sound 6', value: '6️⃣', inline: true },
-      )
-      .setThumbnail('https://cdn.discordapp.com/icons/692792802009939971/bc52c23c6ba77925828634ba3b7ddc98.png')
-      .setFooter('Use `./sb play "number" to play a clip.`')
+      .addFields(fields)
+      .setThumbnail('https://cdn.dribbble.com/users/1614722/screenshots/4419914/soundboard_animatie__zwart__still_2x.gif')
+      .setFooter('Click a reaction button to play a clip')
     let chan = dc.channels.cache.get('807378069324038206') as TextChannel;
     let msg = await chan.send(embed);
     this.msgID = msg.id;
-    msg.react('1️⃣');
-    msg.react('2️⃣');
-    msg.react('3️⃣');
-    msg.react('4️⃣');
-    msg.react('5️⃣');
-    msg.react('6️⃣');
+    sounds.forEach((sound: Sound) => {
+      msg.react(sound.value);
+    });
   }
 
   async join(member: GuildMember) {
@@ -41,13 +43,25 @@ export class SoundBoard {
     if (!chanId) return;
     const chan = dc.channels.cache.get(chanId) as VoiceChannel;
     this.conn = await chan.join();
+    this.conn.on('disconnect', () => {
+      this.conn = undefined;
+    })
   }
 
-  async play(member: GuildMember) {
+  async play(member: GuildMember, sound: string) {
     if (!this.conn) {
-      this.join(member);
+      await this.join(member);
     }
+    this.disp = this.conn?.play(createReadStream(sound), { volume: 0.5 });
+    if (!this.disp) return;
+    this.disp.on('finish', () => {
+      this.disp?.destroy();
+      this.disp = undefined;
+    });
+  }
 
+  async stop() {
+    this.disp?.pause();
   }
 
   async leave() {

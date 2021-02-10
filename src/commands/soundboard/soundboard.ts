@@ -5,14 +5,15 @@ let aliases = ['sb'];
 
 async function run(message: Message, args: string[]) {
   if (!message.member) return;
+  if (args[0] === 'setup') {
+    sb.setup(message.member);
+    return;
+  }
   if (!message.member.voice.channelID) {
     message.reply('You must be in a voice channel to use that command');
     return;
   }
   switch (args[0]) {
-    case 'setup':
-      sb.setup(message.member);
-      break;
     case 'join':
       if (sb.conn) {
         message.reply('I am already in a voice channel!');
@@ -25,8 +26,12 @@ async function run(message: Message, args: string[]) {
       sb.leave();
       break;
 
-    case 'play':
-      sb.play(message.member);
+    case 'stop':
+      if (!sb.disp) {
+        message.reply('There is nothing playing');
+      }
+      sb.stop();
+      break;
   }
 }
 
