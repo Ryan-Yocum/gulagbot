@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ./build/bot.js",
     "build": "tsc && cp -r \"./src/static/soundboard/clips\" \"./build/static/soundboard\"",
-    "deploy": "npm run build & git add . & git commit -S & git push origin main",
-    "pull": "git pull origin main && npm install && pm2 restart 3",
+    "pack": "npm run build & git add . & git commit -S & git push origin main",
+    "deploy": "git pull origin main && npm install && pm2 restart 3",
     "test": "nodemon ./build/bot.js"
   },
   "repository": {
