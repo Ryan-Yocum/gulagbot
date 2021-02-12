@@ -2,12 +2,12 @@ export default [
   {
     name: "Jason Derulo",
     value: "1️⃣",
-    file: "jasonderulo.opus"
+    file: "jasonderulo.mp3"
   },
   {
     name: "Sicko Mode",
     value: "2️⃣",
-    file: "sickomode.opus"
+    file: "sickomode.mp3"
   },
   {
     name: "Coconut Mall",
@@ -17,17 +17,17 @@ export default [
   {
     name: "Wet Fart",
     value: "💩",
-    file: "wetfart.opus"
+    file: "wetfart.mp3"
   },
   {
     name: "Boom",
     value: "💥",
-    file: "boom.opus"
+    file: "boom.mp3"
   },
   {
     name: "Bruh",
     value: "🔉",
-    file: "bruh.opus"
+    file: "bruh.mp3"
   },
   {
     name: "What Theme",
