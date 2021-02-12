@@ -1,5 +1,4 @@
 import { GuildMember, MessageEmbed, StreamDispatcher, TextChannel, VoiceChannel, VoiceConnection } from "discord.js";
-import { createReadStream } from "fs";
 import { dc } from "../bot";
 import { Field, Sound } from "../interfaces/Sound";
 import { checkAdmin } from "../utils/checkPerms";
@@ -53,7 +52,7 @@ export class SoundBoard {
     if (!this.conn) {
       await this.join(member);
     }
-    this.disp = this.conn?.play(createReadStream(sound), { volume: 0.5 });
+    this.disp = this.conn?.play(sound, { volume: 0.5 });
     if (!this.disp) return;
     this.disp.on('finish', () => {
       this.disp?.destroy();

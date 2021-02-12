@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SoundBoard = void 0;
 const discord_js_1 = require("discord.js");
-const fs_1 = require("fs");
 const bot_1 = require("../bot");
 const checkPerms_1 = require("../utils/checkPerms");
 class SoundBoard {
@@ -51,7 +50,7 @@ class SoundBoard {
         if (!this.conn) {
             await this.join(member);
         }
-        this.disp = this.conn?.play(fs_1.createReadStream(sound), { volume: 0.5 });
+        this.disp = this.conn?.play(sound, { volume: 0.5 });
         if (!this.disp)
             return;
         this.disp.on('finish', () => {
