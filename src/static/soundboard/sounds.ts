@@ -23,5 +23,10 @@ export default [
     name: "Boom",
     value: "💥",
     file: "boom.opus"
+  },
+  {
+    name: "Bruh",
+    value: "🔉",
+    file: "bruh.opus"
   }
 ]
