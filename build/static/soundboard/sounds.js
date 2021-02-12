@@ -14,7 +14,7 @@ exports.default = [
     {
         name: "Coconut Mall",
         value: "🥥",
-        file: "coconutmall.opus"
+        file: "coconutmall.mp3"
     },
     {
         name: "Wet Fart",
