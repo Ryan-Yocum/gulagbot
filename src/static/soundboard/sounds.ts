@@ -32,6 +32,6 @@ export default [
   {
     name: "What Theme",
     value: "❓",
-    file: "whattheme.opus"
+    file: "whattheme.mp3"
   }
 ]
