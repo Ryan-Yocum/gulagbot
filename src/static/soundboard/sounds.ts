@@ -28,5 +28,10 @@ export default [
     name: "Bruh",
     value: "🔉",
     file: "bruh.opus"
+  },
+  {
+    name: "What Theme",
+    value: "❓",
+    file: "whattheme.opus"
   }
 ]
