@@ -33,5 +33,10 @@ export default [
     name: "What Theme",
     value: "❓",
     file: "whattheme.mp3"
+  },
+  {
+    name: "Guts Theme",
+    value: "😢",
+    file: "gutstheme.mp3"
   }
 ]
