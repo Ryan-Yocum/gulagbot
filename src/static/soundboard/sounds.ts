@@ -38,5 +38,10 @@ export default [
     name: "Guts Theme",
     value: "😢",
     file: "gutstheme.mp3"
+  },
+  {
+    name: "AMONG US",
+    value: "🅰️",
+    file: "amongus.mp3"
   }
 ]

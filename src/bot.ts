@@ -1,4 +1,4 @@
-import { DiscordClient } from './classes/Client';
+import { DiscordClient } from './classes/DiscordClient';
 import { SoundBoard } from './classes/SoundBoard';
 import { registerCommands, registerEvents, registerHooks } from './utils/registry';
 import { setState } from './utils/state';
